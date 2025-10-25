@@ -10,13 +10,28 @@ namespace DigiBank.Classes
     {
         public Extrato(DateTime data, string descricao, double valor)
         {
-            this.Valor = valor;
+            this.Data = data;
             this.Descricao = descricao;
             this.Valor = valor;
         }
         
         public DateTime Data { get; private set; }
         public string Descricao { get; private set; }
-        public double Valor { get; private set; } 
+        public double Valor { get; private set; }
+        
+        public string FormatarData()
+        {
+            return Data.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+        
+        public string FormatarValor()
+        {
+            return Valor.ToString("C2");
+        }
+        
+        public string ObterTipoOperacao()
+        {
+            return Valor > 0 ? "Entrada" : "Saida";
+        }
     }
 }

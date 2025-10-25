@@ -26,7 +26,12 @@ namespace DigiBank.Classes
 
         public void SetSenha(string senha)
         {
-            this.Senha = senha;
+            this.Senha = Utils.CriptografarSenha(senha);
+        }
+        
+        public bool VerificarSenha(string senha)
+        {
+            return Utils.VerificarSenha(senha, this.Senha);
         }
     }
 }

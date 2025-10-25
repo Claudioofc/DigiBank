@@ -65,5 +65,36 @@ namespace DigiBank.Classes
         {
             return this.Movimentacoes;
         }
+        
+        public bool Transferir(Conta contaDestino, double valor)
+        {
+            if (valor <= 0)
+                return false;
+                
+            if (this.Saca(valor))
+            {
+                contaDestino.Deposita(valor);
+                
+                DateTime dataAtual = DateTime.Now;
+                this.Movimentacoes.Add(new Extrato(dataAtual, $"Transferência para {contaDestino.NumeroConta}", -valor));
+                contaDestino.Movimentacoes.Add(new Extrato(dataAtual, $"Transferência de {this.NumeroConta}", valor));
+                
+                return true;
+            }
+            return false;
+        }
+        
+        public List<Extrato> ObterExtrato(DateTime? dataInicio = null, DateTime? dataFim = null)
+        {
+            var extrato = this.Movimentacoes.AsQueryable();
+            
+            if (dataInicio.HasValue)
+                extrato = extrato.Where(e => e.Data >= dataInicio.Value);
+                
+            if (dataFim.HasValue)
+                extrato = extrato.Where(e => e.Data <= dataFim.Value);
+            
+            return extrato.OrderByDescending(e => e.Data).ToList();
+        }
     }
 }

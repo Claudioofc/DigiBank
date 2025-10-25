@@ -10,12 +10,13 @@ namespace DigiBank.Contratos
     public interface IConta
     {
         void Deposita(double valor);
-
         bool Saca(double valor);
         double ConsultaSaldo();
         string GetCodigoBanco();
         string GetNumeroAgencia();
         string GetNumeroConta();
         List<Extrato> Extrato();
+        bool Transferir(Conta contaDestino, double valor);
+        List<Extrato> ObterExtrato(DateTime? dataInicio = null, DateTime? dataFim = null);
     }
 }
