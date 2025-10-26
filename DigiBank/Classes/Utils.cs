@@ -80,7 +80,7 @@ namespace DigiBank.Classes
             try
             {
                 Console.Clear();
-                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.White;
                 
                 try
@@ -101,7 +101,7 @@ namespace DigiBank.Classes
             }
             catch
             {
-                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
